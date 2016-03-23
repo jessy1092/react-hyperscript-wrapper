@@ -1,0 +1,9 @@
+# node
+node_modules/
+
+# Else
+.editorconfig
+
+# Use Transpile file for publish
+src/
+gulpfile.babel.js
