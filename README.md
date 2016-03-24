@@ -1,6 +1,6 @@
 react-hyperscript-wrapper
 =============
-[![npm][npm-image]][npm-url] [![Dependency Status][david-dm-image]][david-dm-url]
+[![npm][npm-image]][npm-url] [![Build Status][travis-ci-image]][travis-ci-url] [![Dependency Status][david-dm-image]][david-dm-url]
 
 Wrap react component with hyperscript function. Let write react without jsx style and display clearly.
 
@@ -110,6 +110,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [npm-image]: https://img.shields.io/npm/v/react-hyperscript-wrapper.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/react-hyperscript-wrapper
+
+[travis-ci-image]: https://img.shields.io/travis/jessy1092/react-hyperscript-wrapper.svg?style=flat-square
+[travis-ci-url]: https://travis-ci.org/jessy1092/react-hyperscript-wrapper
 
 [david-dm-image]: https://img.shields.io/david/jessy1092/react-hyperscript-wrapper.svg?style=flat-square
 [david-dm-url]: https://david-dm.org/jessy1092/react-hyperscript-wrapper
