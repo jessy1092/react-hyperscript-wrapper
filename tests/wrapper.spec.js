@@ -89,4 +89,26 @@ describe('Wrap react default component', () => {
       assert.equal(1, node.getAttribute('data-test'));
     });
   });
+
+  context('When call method with children', () => {
+    it('could have text children', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div(null, {}, '123')
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal('123', node.textContent);
+    });
+
+    it('could have element children', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div(null, {}, div(null, {}))
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal('DIV', node.children[0].tagName);
+    });
+  });
 });
