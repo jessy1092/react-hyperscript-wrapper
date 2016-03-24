@@ -3,6 +3,7 @@
 import TestUtils from 'react-addons-test-utils';
 import React     from 'react';
 import ReactDOM  from 'react-dom';
+import sinon     from 'sinon';
 
 import {wrapper} from '../src';
 
@@ -10,9 +11,7 @@ describe('Wrap react default component', () => {
 
   let div;
 
-  beforeEach(() => {
-    div = wrapper({div: 'div'}).div;
-  });
+  beforeEach(() => div = wrapper({div: 'div'}).div);
 
   context('When call method', () => {
     it('should be element', () => {
@@ -61,6 +60,33 @@ describe('Wrap react default component', () => {
 
     it('should have className', () => {
       assert.equal('testClass', node.className);
+    });
+  });
+
+  context('When call method with onClick property', () => {
+    it('should call onClick callback', () => {
+
+      let onClick = sinon.spy();
+      let instance = TestUtils.renderIntoDocument(
+        div(null, {onClick}, '')
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      TestUtils.Simulate.click(node);
+
+      assert.isTrue(onClick.called);
+    });
+  });
+
+  context('When call method with custom property', () => {
+    it('should have custom property', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div(null, {'data-test': 1}, '')
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal(1, node.getAttribute('data-test'));
     });
   });
 });
