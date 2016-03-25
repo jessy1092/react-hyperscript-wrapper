@@ -7,7 +7,16 @@ Wrap react component with hyperscript function. Let write react without jsx styl
 Inspire by [react-hyperscript-helpers](https://github.com/Jador/react-hyperscript-helpers).
 
 
-## Usage
+## Feature
+
+- Just js function.
+- Don't need react transpiler.
+- More clear.
+- Dynamic arguments.
+- Can use custom component.
+
+
+## Full Example
 
 ```js
 import React from 'react';
@@ -23,7 +32,13 @@ let HelloBox = React.createClass({
   },
 
   render: function () {
-    return div('#testId.testClass', {onClick: this._onClick}, 'Hello World!');
+    return (
+      div('#testId.testClass',
+        div('#child',
+          div({onClick: this._onClick}, 'Hello World!')
+        )
+      )
+    );
   }
 });
 
@@ -48,7 +63,11 @@ let HelloBox = React.createClass({
 
   render: function () {
     return (
-      <div id="testId" className="testClass" onClick={this._onClick}>'Hello World!'</div>
+      <div id="testId" className="testClass">
+        <div id="child">
+          <div onClick={this._onClick}>'Hello World!'</div>
+        </div>
+      </div>
     );
   }
 });
