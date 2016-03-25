@@ -1,11 +1,60 @@
 
 import React from 'react';
 
+let filterArgument = (args) => {
+
+  switch (args.length) {
+
+    case 3:
+      return [...args];
+
+    case 2:
+      // Check args[0] is identifies
+      if (typeof args[0] === 'string') {
+
+        // Check args[1] is children
+        if (Array.isArray(args[1]) || React.isValidElement(args[1])) {
+          return [args[0], {}, args[1]];
+        }
+
+        // args[1] is property
+        return [...args, null];
+      } else {
+        // Check args[1] is children
+        if (Array.isArray(args[1]) || React.isValidElement(args[1])) {
+          return [null, ...args];
+        }
+        return [null, {}, null];
+      }
+
+    case 1:
+      if (typeof args[0] === 'string') {
+        // Check args[0] is identifies
+        if (args[0].startsWith('.') || args[0].startsWith('#')) {
+          return [args[0], {}, null];
+        }
+        // args[0] is text children
+        return [null, {}, args[0]];
+      } else if (Array.isArray(args[0]) || React.isValidElement(args[0])) {
+        return [null, {}, args[0]];
+      }
+      return [null, args[0], null];
+
+    case 0:
+      return [null, {}, null];
+
+    default:
+      return [...args];
+  }
+};
+
 let wrapComponent = (Component) => {
 
-  return (identifies, props, children) => {
+  return function() {
 
-    if (typeof identifies === 'string' && identifies) {
+    let [identifies, props, children] = filterArgument(arguments);
+
+    if (identifies) {
       let identifiesList = identifies.split('#');
       let id = null;
       let className = '';
