@@ -1,7 +1,7 @@
 {
   "name": "react-hyperscript-wrapper",
   "description": "Wrap react component with hyperscript function",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "keywords": [
     "react",
     "hyperscript",

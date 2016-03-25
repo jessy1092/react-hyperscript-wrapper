@@ -1,3 +1,13 @@
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/jessy1092/react-hyperscript-wrapper/compare/v0.0.1...v0.1.0) (2016-03-25)
+
+
+### Features
+
+* Implement dynamic arguments ([28e7970](https://github.com/jessy1092/react-hyperscript-wrapper/commit/28e7970))
+
+
+
 <a name="0.0.1"></a>
 ## 0.0.1 (2016-03-23)
 
