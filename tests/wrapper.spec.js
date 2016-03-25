@@ -7,6 +7,8 @@ import sinon     from 'sinon';
 
 import {wrapper} from '../src';
 
+import FakeComponent from './FakeComponent';
+
 describe('Wrap react default component', () => {
 
   let div;
@@ -177,5 +179,20 @@ describe('Wrap react default component', () => {
       assert.equal(1, node.getAttribute('data-test'));
       assert.equal('DIV', node.children[0].tagName);
     });
+  });
+});
+
+describe('Wrap custom component', () => {
+
+  let WrapFakeComponent;
+
+  beforeEach(() => {
+    WrapFakeComponent = wrapper({WrapFakeComponent: FakeComponent}).WrapFakeComponent;
+  });
+
+  it('should be the same type', () => {
+    assert.isTrue(
+      TestUtils.isElementOfType(WrapFakeComponent(), FakeComponent)
+    );
   });
 });
