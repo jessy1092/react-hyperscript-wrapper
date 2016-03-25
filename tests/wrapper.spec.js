@@ -104,10 +104,77 @@ describe('Wrap react default component', () => {
     it('could have element children', () => {
 
       let instance = TestUtils.renderIntoDocument(
-        div(null, {}, div(null, {}))
+        div(null, {}, div(null, {}, null))
       );
       let node = ReactDOM.findDOMNode(instance);
 
+      assert.equal('DIV', node.children[0].tagName);
+    });
+  });
+
+  context('When call method with one arguments', () => {
+    it('could pass identifies', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div('#testId')
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal('testId', node.id);
+    });
+
+    it('could pass property', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div({'data-test': 1})
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal(1, node.getAttribute('data-test'));
+    });
+
+    it('could pass children', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div(div())
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal('DIV', node.children[0].tagName);
+    });
+  });
+
+  context('When call method with two arguments', () => {
+    it('could pass identifies and property', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div('.testClass', {'data-test': 1})
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal('testClass', node.className);
+      assert.equal(1, node.getAttribute('data-test'));
+    });
+
+    it('could pass identifies and children', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div('#testId', div())
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal('testId', node.id);
+      assert.equal('DIV', node.children[0].tagName);
+    });
+
+    it('could pass property and children', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div({'data-test': 1}, div())
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal(1, node.getAttribute('data-test'));
       assert.equal('DIV', node.children[0].tagName);
     });
   });
