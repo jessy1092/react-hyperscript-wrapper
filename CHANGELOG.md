@@ -1,3 +1,13 @@
+<a name="0.1.1"></a>
+## [0.1.1](//compare/v0.1.0...v0.1.1) (2016-03-27)
+
+
+### Bug Fixes
+
+* Can pass text as children when dynamic arguments 744acbe
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/jessy1092/react-hyperscript-wrapper/compare/v0.0.1...v0.1.0) (2016-03-25)
 
