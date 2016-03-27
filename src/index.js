@@ -1,6 +1,10 @@
 
 import React from 'react';
 
+let isChildren = (value) => {
+  return Array.isArray(value) || React.isValidElement(value) || typeof value === 'string';
+};
+
 let filterArgument = (args) => {
 
   switch (args.length) {
@@ -12,8 +16,8 @@ let filterArgument = (args) => {
       // Check args[0] is identifies
       if (typeof args[0] === 'string') {
 
-        // Check args[1] is children
-        if (Array.isArray(args[1]) || React.isValidElement(args[1])) {
+        // Check args[1] is children or text
+        if (isChildren(args[1])) {
           return [args[0], {}, args[1]];
         }
 
@@ -21,7 +25,7 @@ let filterArgument = (args) => {
         return [...args, null];
       } else {
         // Check args[1] is children
-        if (Array.isArray(args[1]) || React.isValidElement(args[1])) {
+        if (isChildren(args[1])) {
           return [null, ...args];
         }
         return [null, {}, null];
@@ -33,9 +37,9 @@ let filterArgument = (args) => {
         if (args[0].startsWith('.') || args[0].startsWith('#')) {
           return [args[0], {}, null];
         }
-        // args[0] is text children
+        // args[0] is the text as children
         return [null, {}, args[0]];
-      } else if (Array.isArray(args[0]) || React.isValidElement(args[0])) {
+      } else if (isChildren(args[0])) {
         return [null, {}, args[0]];
       }
       return [null, args[0], null];

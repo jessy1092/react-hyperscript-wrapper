@@ -93,7 +93,7 @@ describe('Wrap react default component', () => {
   });
 
   context('When call method with children', () => {
-    it('could have text children', () => {
+    it('could have text as children', () => {
 
       let instance = TestUtils.renderIntoDocument(
         div(null, {}, '123')
@@ -144,6 +144,16 @@ describe('Wrap react default component', () => {
 
       assert.equal('DIV', node.children[0].tagName);
     });
+
+    it('could pass text as children', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div('123')
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal('123', node.textContent);
+    });
   });
 
   context('When call method with two arguments', () => {
@@ -169,6 +179,18 @@ describe('Wrap react default component', () => {
       assert.equal('DIV', node.children[0].tagName);
     });
 
+    it('could pass identifies and text as children', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div('#testId', '123')
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal('testId', node.id);
+      assert.equal('123', node.textContent);
+    });
+
+
     it('could pass property and children', () => {
 
       let instance = TestUtils.renderIntoDocument(
@@ -178,6 +200,17 @@ describe('Wrap react default component', () => {
 
       assert.equal(1, node.getAttribute('data-test'));
       assert.equal('DIV', node.children[0].tagName);
+    });
+
+    it('could pass property and text as children', () => {
+
+      let instance = TestUtils.renderIntoDocument(
+        div({'data-test': 1}, '123')
+      );
+      let node = ReactDOM.findDOMNode(instance);
+
+      assert.equal(1, node.getAttribute('data-test'));
+      assert.equal('123', node.textContent);
     });
   });
 });
