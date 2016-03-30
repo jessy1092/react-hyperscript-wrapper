@@ -1,6 +1,4 @@
 # node
 node_modules/
 *.log
-
-# transpile file
-lib/
+bundle.js
